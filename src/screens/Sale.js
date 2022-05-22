@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import Login from '../screens/Login';
 import img from '../assets/images/login.png';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -16,7 +15,7 @@ import {
   ScrollView
 } from 'react-native';
 
-export default function Signup(props) {
+export default function Sale(props) {
 
   const navigation = useNavigation();
   return (
@@ -28,48 +27,54 @@ export default function Signup(props) {
       <View style={styles.inputContainer}>
                
       <View style={[styles.card2, { backgroundColor: "#2ff2", width:'100%' }]}>
-        <Text style={styles.title}> S I G N U P</Text>
+        <Text style={styles.title}> Item Sale</Text>
         <Sae
-          label={"User Name"}
+          label={"Item ID"}
           iconClass={FontAwesomeIcon}
           iconName={"pencil"}
           iconColor={"white"}
         />
         <Sae
           style={styles.input}
-          label={"Date of Birth"}
+          label={"Description"}
           iconClass={FontAwesomeIcon}
         />
         <Sae
           style={styles.input}
-          label={"Email"}
+          label={"Quantity"}
           iconClass={FontAwesomeIcon}
         />
-
-        <Sae
+         <Sae
           style={styles.input}
-          label={"Mobile Number"}
+          label={"Customer ID"}
           iconClass={FontAwesomeIcon}
         />
-
-        <Sae
+         <Sae
           style={styles.input}
-          label={"Possword"}
-          secureTextEntry={true}
+          label={"Costomer Name"}
           iconClass={FontAwesomeIcon}
         />
         <Sae
           style={styles.input}
-          label={"Re-Enter Password"}
-          secureTextEntry={true}
+          label={"Rate"}
           iconClass={FontAwesomeIcon}
         />
-
+        <Sae
+          style={styles.input}
+          label={"Price"}
+          iconClass={FontAwesomeIcon}
+        />
+         <Sae
+          style={styles.input}
+          label={"isCash"}
+          iconClass={FontAwesomeIcon}
+        />
+       
         <TouchableOpacity style={styles.button} //onPress={"None"}
         >
-            <Text style={{fontSize: 20,color:'white'}}>Signup</Text>
+            <Text style={{fontSize: 20,color:'white'}}>Sale out</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Login')}
+          <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Home')}
         >
             <Text style={{fontSize: 20,color:'white'}}>Cancel</Text>
           </TouchableOpacity>
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
   inputContainer: {
 //    backgroundColor: 'red',
     width: '100%',
-    marginTop: 100,
+    marginTop: 5,
     alignItems: 'center',
     //alignContent:'center'
 

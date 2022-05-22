@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import Login from '../screens/Login';
 import img from '../assets/images/login.png';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -16,7 +15,7 @@ import {
   ScrollView
 } from 'react-native';
 
-export default function Signup(props) {
+export default function NewItem(props) {
 
   const navigation = useNavigation();
   return (
@@ -28,48 +27,39 @@ export default function Signup(props) {
       <View style={styles.inputContainer}>
                
       <View style={[styles.card2, { backgroundColor: "#2ff2", width:'100%' }]}>
-        <Text style={styles.title}> S I G N U P</Text>
+        <Text style={styles.title}> New Item</Text>
         <Sae
-          label={"User Name"}
+          label={"Item Description"}
           iconClass={FontAwesomeIcon}
           iconName={"pencil"}
           iconColor={"white"}
         />
         <Sae
           style={styles.input}
-          label={"Date of Birth"}
+          label={"Quantity"}
           iconClass={FontAwesomeIcon}
         />
         <Sae
           style={styles.input}
-          label={"Email"}
-          iconClass={FontAwesomeIcon}
-        />
-
-        <Sae
-          style={styles.input}
-          label={"Mobile Number"}
-          iconClass={FontAwesomeIcon}
-        />
-
-        <Sae
-          style={styles.input}
-          label={"Possword"}
-          secureTextEntry={true}
+          label={"Weight"}
           iconClass={FontAwesomeIcon}
         />
         <Sae
           style={styles.input}
-          label={"Re-Enter Password"}
-          secureTextEntry={true}
+          label={"Rate"}
           iconClass={FontAwesomeIcon}
         />
-
+        <Sae
+          style={styles.input}
+          label={"Price"}
+          iconClass={FontAwesomeIcon}
+        />
+       
         <TouchableOpacity style={styles.button} //onPress={"None"}
         >
-            <Text style={{fontSize: 20,color:'white'}}>Signup</Text>
+            <Text style={{fontSize: 20,color:'white'}}>Add Item</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Login')}
+          <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Home')}
         >
             <Text style={{fontSize: 20,color:'white'}}>Cancel</Text>
           </TouchableOpacity>
