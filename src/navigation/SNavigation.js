@@ -28,6 +28,7 @@ function SNavigation() {
         component={Signup}
         options={{headerShown: false}}
       />
+      
       <Stack.Screen
         name="MyTabs"
         component={MyTabs}

@@ -7,11 +7,14 @@ import {
   ToastAndroid,
   FlatList,
   ScrollView,
-  ImageBackground,  
+  ImageBackground,
 } from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 import img from '../assets/images/login.png';
+
 
 const WeightCalculator = () => {
   const navigation = useNavigation();
@@ -21,7 +24,7 @@ const WeightCalculator = () => {
   console.log(inputWeight);
   const [name, setname] = useState(null);
   const [item, setitem] = useState(null);
-  
+
   // this function calculate weight and convert into kg
   const weightCalculate = value => {
     const kg1 = state.inputWeight.split('-')[0] * 40;
@@ -43,109 +46,56 @@ const WeightCalculator = () => {
 
   return (
     <>
-    <ImageBackground source={img} style={{position:'absolute', width:'100%', height:'100%', alignItems:'center'}}
-        >
+      <ImageBackground source={img} style={{ flex: 1 }}>
 
-      {/* <ScrollView contentContainerStyle={styles.scroll}> */}
-      <View style={styles.mainHeading}>
-        <Text style={styles.mainHeadingText}>فصل کا بل</Text>
-      </View>
-      <View style={styles.textFieldContainer}>
-      <View style={styles.fields}>
-          <TextInput
-            style={styles.textField}
-            // keyboardType={'al'}
-            textAlign="right"
-            value={name}
-            onChangeText={value=>setname(value )
-            }
-          />
-          <Text style={styles.textLabel}>نام: </Text>
-        </View>
-      <View style={styles.fields}>
-          <TextInput
-            style={styles.textField}
-            // keyboardType={'al'}
-            textAlign="right"
-            value={item}
-            onChangeText={value=>setitem(value )
-            }
-          />
-          <Text style={styles.textLabel}>آئٹم: </Text>
-        </View>
-        <View style={styles.fields}>
-          <TextInput
-            style={styles.textField}
-            placeholder="0"
-            keyboardType={'number-pad'}
-            textAlign="right"
-            value={inputWeight}
-            onChangeText={value =>setInputWeight(value)
-            }
-          />
-          <Text style={styles.textLabel}>وزن: </Text>
-        </View>
-        <View style={styles.fields}>
-          <TouchableOpacity style={styles.button} onPress={(value=> setTotalWeight(inputWeight))}>
-            <Text style={{...styles.buttonText, fontSize: 50}}>دوسرا وزن</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.inputContainer}>
 
-        <View style={{flex: 1, width: '95%'}}>
-          <View style={styles.mainView}>
-            <Text style={styles.heading}>وزن</Text>
-            <Text style={styles.heading}>ترتیب نمبر</Text>
-          </View>
-          <FlatList
-            data={totalWeight}
-            renderItem={value => (
-              <View style={styles.mainView}>
-                {/* <Text>
-                  {value.item}
-                </Text> */}
-                <Text style={styles.heading}>
-                  {Math.trunc(value.item / 40)} -{' '}
-                  {Math.trunc(
-                    (value.item / 40 - Math.trunc(value.item / 40)) * 40,
-                  )}
-                </Text>
-                <View></View>
-                <Text style={styles.heading}>{value.index + 1}</Text>
-              </View>
-            )}
-          />
-          <ScrollView contentContainerStyle={styles.scroll}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end',
-                flexDirection: 'row',
-              }}>
-              <View style={{...styles.fields, flex: 1}}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    navigation.navigate('GenrateBill', totalWeight);
-                  }}>
-                  <Text style={styles.buttonText}>بل تیار کرے</Text>
+            <View style={styles.card2}>
+              <Text style={styles.title}> Bill Calculate</Text>
+              <ScrollView >
+
+                <Sae
+                  label={"Customer Name"}
+                  iconClass={FontAwesomeIcon}
+                  iconName={"pencil"}
+                  iconColor={"white"}
+                />
+                <Sae
+                  label={"Itme"}
+                  iconClass={FontAwesomeIcon}
+                  style={styles.input}
+                />
+                <Sae
+                  label={"Deduction"}
+                  iconClass={FontAwesomeIcon}
+                  style={styles.input}
+                />
+                <Sae
+                  label={"Price"}
+                  style={styles.input}
+                  iconClass={FontAwesomeIcon}
+                />
+                <Sae
+                  label={"Partner"}
+                  style={styles.input}
+                  iconClass={FontAwesomeIcon}
+                />
+
+                <TouchableOpacity style={styles.button} //onPress={"None"}
+                >
+                  <Text style={{ fontSize: 20, color: 'white' }}>Add Item</Text>
                 </TouchableOpacity>
-              </View>
-
-              <View style={{...styles.fields, flex: 1}}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    navigation.navigate('ReCheck', totalWeight);
-                  }}>
-                  <Text style={styles.buttonText}>دوبارہ چیک کرے</Text>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}
+                >
+                  <Text style={{ fontSize: 20, color: 'white' }}>Cancel</Text>
                 </TouchableOpacity>
-              </View>
+              </ScrollView>
+
             </View>
-          </ScrollView>
-        </View>
-      </View>
-      {/* </ScrollView> */}
-  </ImageBackground>
+
+          </View>
+        
+      </ImageBackground>
     </>
   );
 };
@@ -162,14 +112,69 @@ const showToast = msg => {
 export default WeightCalculator;
 
 const styles = StyleSheet.create({
-  scroll: {
+
+  inputContainer: {
+    width: '100%',
+    marginTop: 100,
     alignItems: 'center',
   },
+
+
+  container: {
+    flex: 1,
+    paddingTop: 24,
+    width: '100%',
+    backgroundColor: "white",
+  },
+  content: {
+    // not cool but good enough to make all inputs visible when keyboard is active
+    paddingBottom: 300,
+  },
+  card1: {
+    paddingVertical: 16,
+  },
+  card2: {
+    padding: 16,
+    backgroundColor: "#2ff2",
+    width: '95%',
+    borderRadius: 20
+
+  },
+  input: {
+    marginTop: 4,
+
+  },
+  title: {
+    padding: 8,
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    backgroundColor: 'rgba(24,32,14,0.2)',
+    borderBottomColor: 'green',
+    borderBottomWidth: 5,
+    borderRadius: 10
+
+  },
+
+  button: {
+    backgroundColor: 'blue',
+    marginTop: 20,
+    width: '90%',
+    marginLeft: 15,
+    alignItems: 'center',
+    height: 50,
+    justifyContent: 'center',
+    borderRadius: 10,
+
+  },
+
+
   mainContainer: {
     flex: 1,
     // backgroundColor: 'red',
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   mainHeading: {
     // backgroundColor: 'rgba(0, 50, 0, 0.9)',
@@ -178,9 +183,9 @@ const styles = StyleSheet.create({
     minHeight: 50,
     width: '90%',
     borderRadius: 30,
-    marginTop:100,
-    borderBottomColor:'white',
-    borderWidth:1,
+    marginTop: 100,
+    borderBottomColor: 'white',
+    borderWidth: 1,
   },
   mainHeadingText: {
     fontSize: 50,
@@ -193,7 +198,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     borderRadius: 10,
-    alignItems:'center',
+    alignItems: 'center',
   },
   fields: {
     flexDirection: 'row',
