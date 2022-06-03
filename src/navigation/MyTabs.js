@@ -3,7 +3,7 @@ import * as React from 'react';
 import Home from '../screens/Home';
 import Sale from '../screens/Sale';
 import Setting from '../screens/Setting';
-import WeightCalculator from '../screens/WeightCalculator';
+import Weight from '../screens/Weight';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NewCustomer from '../screens/NewCustomer';
 import NewItem from '../screens/NewItem'
@@ -21,7 +21,7 @@ function MyTabs() {
       }}>
       <Tab.Screen
         name="Weight"
-        component={WeightCalculator}
+        component={Weight}
         options={{
           headerShown:false,
           title: 'کیلکولیٹر',
