@@ -3,12 +3,12 @@ import React,
 import { View,
 TouchableOpacity,
 ImageBackground,
-Text, 
-Alert} from "react-native";
+Text} from "react-native";
 import img from '../assets/images/login.png';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import {styles} from '../assets/css/styles.js'
+import { TextInput } from "react-native-web";
 
 const Weight = () => {
 
@@ -17,26 +17,31 @@ const Weight = () => {
   const[mn, setMn] = useState(0);
   const[kg, setKg] = useState(0);
   const[ded, setDed] = useState(0);
+  const[tWeight, setTWeight] = useState(0);
 
 // click function to split the weight
   const handleClick = (value) =>{
+
+    if((!vWeight)||(vWeight=='') || (vWeight == 0) || null){
+      alert("Please enter some weight!");
+      
+    } else{
+
     const sCount = (vWeight.match(/-/g)||[]).length;
-   
-    if(!(vWeight.includes('-'))){
-    if(vWeight<40){
-      setMn(0);
-      setKg(vWeight);
-      setDed(0);
-    }
-    else{
-      setMn(Math.floor(vWeight/40));
-      setKg(vWeight%40);
-      setDed(0);
-    }
-   }else if(sCount>2){
+   if((!(vWeight.includes('-')))&& (vWeight >= 0)){
+        if(vWeight<40){
+          setMn(0);
+          setKg(vWeight);
+          setDed(0);
+        }
+        else{
+          setMn(Math.floor(vWeight/40));
+          setKg(vWeight%40);
+          setDed(0);
+        } //End of sub if Block
+   }else if(sCount>2){ //Raise an alert if splitter is more than 2 times
      alert("Splitter can not be more than 2!.");
-   }
-   else if(sCount==2){
+   }else if(sCount==2){ // it will set the deduction also if splitter is set 2 times
     setMn(vWeight.split('-')[0]);
     setKg(vWeight.split('-')[1]);
     setDed(vWeight.split('-')[2]); 
@@ -47,8 +52,11 @@ const Weight = () => {
     setDed(0);
   }else{
     alert("Please corret your KG");
-  }
-  }
+  } // End of if Block
+  } // end esle block
+
+  
+ }// End of Function
   
   // Retrun function to return the object
   return(
@@ -64,16 +72,26 @@ const Weight = () => {
             >
               Input: {vWeight} mn: {mn}  kg: {kg}  Ded: {ded}
             </p>
-            <button onClick={() => setWeight(vWeight + 1)}>
-              Click me
-            </button>
+            
 
-            <Sae 
+            {/* <Sae 
             // Input field for getting the date as weight from the user
               label={"Weight Entry"} // Label or placeholder of the field
               iconClass={FontAwesomeIcon} // Icon used in the field for decorum purpose
+              
               onChangeText = {setWeight} //Weight is to be set to the vWeight variable by using setWeight of the state
-              />
+              /> */}
+
+            <TextInput 
+            style={styles.submitButtonText}
+            label={"Enter weight"} 
+              placeholder={'Enter Weight'}
+            // iconClass ={FontAwesomeIcon}
+           
+           onChangeText = {setWeight}
+            >
+
+            </TextInput>
 
       <TouchableOpacity
       // A button declared 
